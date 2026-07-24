@@ -41,38 +41,6 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* SMART PRINT & PDF TOOLBAR */
-    .smart-print-bar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: #FFFFFF;
-      border-bottom: 2px solid #E2E8F0;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      padding: 10px 20px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .print-bar-title {
-      font-weight: 700;
-      font-size: 14px;
-      color: #091329;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .print-controls-group {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
     .preset-group {
       display: flex;
       gap: 6px;
@@ -97,22 +65,6 @@
       border-color: #94A3B8;
     }
 
-    .print-checkboxes {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      font-size: 12px;
-      font-weight: 600;
-      color: #475569;
-      flex-wrap: wrap;
-    }
-
-    .print-checkboxes label {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px 0;
     }
 
     .action-btn-group {
@@ -142,12 +94,7 @@
     }
     .btn-pdf:hover, .btn-pdf:active { background: #047857; }
 
-    .btn-print {
-      background: var(--accent);
-      color: white;
-      box-shadow: 0 2px 6px rgba(0, 132, 203, 0.25);
-    }
-    .btn-print:hover, .btn-print:active { background: #006eb0; }
+  
 
     /* HEADER MATCHING IMAGE EXACT GRADIENT */
     .header {
@@ -682,17 +629,6 @@
       }
     }
 
-    /* PRINT & DIRECT PDF EXPORT STYLES */
-    @media print, .pdf-export-mode {
-      body {
-        background: white !important;
-        color: black !important;
-        padding-bottom: 0 !important;
-        font-size: 10px !important;
-      }
-
-      .smart-print-bar { display: none !important; }
-
       .header {
         background: none !important;
         color: black !important;
@@ -759,33 +695,6 @@
   </style>
 </head>
 <body>
-
-  <!-- SMART PRINT & PDF TOOLBAR -->
-  <div class="smart-print-bar">
-    <div class="print-bar-title">
-      <span>Smart Print & PDF Engine</span>
-    </div>
-    
-    <div class="print-controls-group">
-      <div class="preset-group">
-        <button class="preset-btn" onclick="applyPreset('all')">Full Report</button>
-        <button class="preset-btn" onclick="applyPreset('summary')">Summary</button>
-        <button class="preset-btn" onclick="applyPreset('grades')">Diagnostics</button>
-      </div>
-
-      <div class="print-checkboxes">
-        <label><input type="checkbox" id="chk-kpi" checked> KPIs</label>
-        <label><input type="checkbox" id="chk-matrix" checked> Matrices</label>
-        <label><input type="checkbox" id="chk-grades" checked> Diagnostics</label>
-        <label><input type="checkbox" id="chk-chart" checked> Chart</label>
-        <label><input type="checkbox" id="chk-action" checked> Action Plan</label>
-      </div>
-
-     <div class="action-btn-group pdf-hidden-zone">
-
-function executeSmartPDF()
-    📄
-  </button>
 
 </div>
     </div>
