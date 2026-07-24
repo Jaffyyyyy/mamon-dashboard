@@ -506,10 +506,170 @@
     .action-card h4 { font-size: 13px; color: #091329; margin-bottom: 6px; }
     .action-card p { font-size: 11px; color: #64748B; line-height: 1.5; }
 
+    /* SUBMISSION TRACKER STYLES */
+    .submission-tracker-container {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid #E2E8F0;
+      box-shadow: var(--shadow-sm);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .tracker-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tracker-header h3 {
+      font-size: 16px;
+      font-weight: 800;
+      color: #091329;
+    }
+
+    .tracker-stats {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tracker-stat {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .tracker-stat-value {
+      font-size: 14px;
+      font-weight: 800;
+      color: #091329;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .submissions-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .submission-item {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .submission-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-color: var(--accent);
+    }
+
+    .submission-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .submission-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #091329;
+    }
+
+    .submission-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+
+    .badge-pending {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+
+    .badge-approved {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+
+    .badge-rejected {
+      background: #FEE2E2;
+      color: #991B1B;
+    }
+
+    .badge-submitted {
+      background: #DBEAFE;
+      color: #1e40af;
+    }
+
+    .submission-meta {
+      font-size: 11px;
+      color: #64748B;
+      margin-bottom: 8px;
+    }
+
+    .submission-progress {
+      margin-top: 10px;
+    }
+
+    .progress-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: #E2E8F0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      border-radius: 8px;
+      transition: width 0.3s ease;
+    }
+
+    .submission-empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: #94A3B8;
+    }
+
+    .submission-empty-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .submission-empty p {
+      font-size: 12px;
+      color: #64748B;
+    }
+
     /* COLOR GRADIENTS FOR BARS */
     .bg-green { background: linear-gradient(180deg, #34D399, #059669); }
     .bg-yellow { background: linear-gradient(180deg, #FBBF24, #D97706); }
     .bg-red { background: linear-gradient(180deg, #F87171, #DC2626); }
+    .bg-blue { background: linear-gradient(180deg, #60A5FA, #3B82F6); }
 
     /* FOOTER */
     .footer { text-align: center; padding: 20px 20px 10px 20px; color: #94A3B8; font-size: 11px; }
@@ -528,7 +688,7 @@
       z-index: -1;
     }
 
-    .consolidation-report-card, .analytical-card, .grade-card, .action-card, .chart-container {
+    .consolidation-report-card, .analytical-card, .grade-card, .action-card, .chart-container, .submission-tracker-container {
       background: rgba(255, 255, 255, 0.92) !important;
       backdrop-filter: blur(12px);
       border: 1px solid rgba(226, 232, 240, 0.8);
@@ -605,6 +765,12 @@
       .container {
         padding: 0 10px;
       }
+      .submissions-list {
+        grid-template-columns: 1fr;
+      }
+      .tracker-stats {
+        justify-content: space-between;
+      }
     }
 
     @media (max-width: 480px) {
@@ -626,6 +792,17 @@
       }
       .action-plan-grid {
         grid-template-columns: 1fr;
+      }
+      .submissions-list {
+        grid-template-columns: 1fr;
+      }
+      .tracker-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .tracker-stats {
+        width: 100%;
+        flex-direction: row;
       }
     }
 
@@ -673,7 +850,7 @@
         gap: 10px !important;
       }
 
-      .grade-card, .consolidation-report-card, .analytical-card, .chart-container, .action-card {
+      .grade-card, .consolidation-report-card, .analytical-card, .chart-container, .action-card, .submission-tracker-container {
         box-shadow: none !important;
         border: 1px solid #CBD5E1 !important;
         break-inside: avoid !important;
@@ -694,6 +871,8 @@
         grid-template-columns: repeat(4, 1fr) !important;
         gap: 8px !important;
       }
+
+      .submission-tracker-container { display: none !important; }
 
       .footer { padding: 10px 0 0 0 !important; }
       .footer-badge { background: none !important; border: 1px solid #94A3B8 !important; color: #000 !important; padding: 2px 8px !important; }
@@ -781,7 +960,7 @@
           <path d="M 250,95 C 220,135 225,180 240,200 C 247,185 250,170 250,170 C 250,170 253,185 260,200 C 275,180 280,135 250,95 Z" fill="#DC2626" stroke="#991B1B" stroke-width="3"/>
           <path d="M 250,120 C 235,150 238,180 248,193 C 250,185 250,175 250,175 C 250,175 250,185 252,193 C 262,180 265,150 250,120 Z" fill="#F59E0B"/>
 
-          <path d="M 250,330 C 210,305 160,305 120,315 L 120,240 C 160,230 210,230 250,250 C 290,230 340,230 380,240 L 380,315 C 340,305 290,305 250,330 Z" fill="#FFFFFF" stroke="#000000" stroke-width="5"/>
+          <path d="M 250,330 C 210,305 160,305 120,315 L 120,240 C 160,230 210,230 250,250 C 290,230 340,230 380,240 L 380,315 C 340,305 290,305 250,330 Z" fill="#FFFFFF" stroke="#000000" stroke-width="4"/>
           <line x1="250" y1="250" x2="250" y2="330" stroke="#000000" stroke-width="4"/>
           <path d="M 125,318 C 160,310 205,310 245,330" fill="none" stroke="#000000" stroke-width="2"/>
           <path d="M 375,318 C 340,310 295,310 255,330" fill="none" stroke="#000000" stroke-width="2"/>
@@ -789,7 +968,7 @@
           <text x="185" y="295" font-family="'Impact', 'Arial Black', sans-serif" font-size="44" font-weight="900" fill="#000000" text-anchor="middle">19</text>
           <text x="315" y="295" font-family="'Impact', 'Arial Black', sans-serif" font-size="44" font-weight="900" fill="#000000" text-anchor="middle">98</text>
 
-          <text x="250" y="398" font-family="'Impact', 'Arial Black', sans-serif" font-size="48" font-weight="900" fill="#FFFFFF" stroke="#000000" stroke-width="5" paint-order="stroke fill" text-anchor="middle">132649</text>
+          <text x="250" y="398" font-family="'Impact', 'Arial Black', sans-serif" font-size="48" font-weight="900" fill="#FFFFFF" stroke="#000000" stroke-width="5" paint-order="stroke fill" text-anchor="middle">MAMON</text>
         </g>
       </svg>
     </div>
@@ -913,6 +1092,198 @@
       </div>
     </div>
 
+    <!-- SUBMISSION TRACKER SECTION -->
+    <div id="section-tracker">
+      <h2 class="section-title">📋 Submission Tracker</h2>
+
+      <div class="submission-tracker-container">
+        <div class="tracker-header">
+          <h3>Active Submissions & Status Overview</h3>
+          <div class="tracker-stats">
+            <div class="tracker-stat">
+              <span>Total Submissions</span>
+              <span class="tracker-stat-value" id="total-submissions">8</span>
+            </div>
+            <div class="tracker-stat">
+              <span>Pending</span>
+              <span class="tracker-stat-value" style="color: #F59E0B;" id="pending-count">3</span>
+            </div>
+            <div class="tracker-stat">
+              <span>Approved</span>
+              <span class="tracker-stat-value" style="color: #10B981;" id="approved-count">4</span>
+            </div>
+            <div class="tracker-stat">
+              <span>Rejected</span>
+              <span class="tracker-stat-value" style="color: #EF4444;" id="rejected-count">1</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="submissions-list" id="submissions-list">
+          <!-- Submission Items -->
+          <div class="submission-item">
+            <div class="submission-header">
+              <span class="submission-title">Grade 1 Assessment Report</span>
+              <span class="submission-badge badge-approved">✓ Approved</span>
+            </div>
+            <div class="submission-meta">
+              <strong>Submitted by:</strong> Jenny Queen L. Orillaneda<br>
+              <strong>Submitted on:</strong> 2024-12-15
+            </div>
+            <div class="submission-progress">
+              <div class="progress-label">
+                <span>Completion</span>
+                <span>100%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar-fill bg-green" style="width: 100%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="submission-item">
+            <div class="submission-header">
+              <span class="submission-title">Grade 2 Diagnostics</span>
+              <span class="submission-badge badge-pending">⏳ Pending</span>
+            </div>
+            <div class="submission-meta">
+              <strong>Submitted by:</strong> Maria Fatima R. Peñanueva<br>
+              <strong>Submitted on:</strong> 2024-12-18
+            </div>
+            <div class="submission-progress">
+              <div class="progress-label">
+                <span>Under Review</span>
+                <span>75%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar-fill bg-yellow" style="width: 75%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="submission-item">
+            <div class="submission-header">
+              <span class="submission-title">Grade 3 Performance Data</span>
+              <span class="submission-badge badge-approved">✓ Approved</span>
+            </div>
+            <div class="submission-meta">
+              <strong>Submitted by:</strong> Jessa Mae R. Flores<br>
+              <strong>Submitted on:</strong> 2024-12-14
+            </div>
+            <div class="submission-progress">
+              <div class="progress-label">
+                <span>Completion</span>
+                <span>100%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar-fill bg-green" style="width: 100%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="submission-item">
+            <div class="submission-header">
+              <span class="submission-title">Grade 4 Analytics Report</span>
+              <span class="submission-badge badge-rejected">✗ Rejected</span>
+            </div>
+            <div class="submission-meta">
+              <strong>Submitted by:</strong> Alma C. Nayre<br>
+              <strong>Submitted on:</strong> 2024-12-16
+            </div>
+            <div class="submission-progress">
+              <div class="progress-label">
+                <span>Revision Needed</span>
+                <span>50%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar-fill bg-red" style="width: 50%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="submission-item">
+            <div class="submission-header">
+              <span class="submission-title">Grade 5 Competency Matrix</span>
+              <span class="submission-badge badge-approved">✓ Approved</span>
+            </div>
+            <div class="submission-meta">
+              <strong>Submitted by:</strong> Marcelina S. Sumaguit<br>
+              <strong>Submitted on:</strong> 2024-12-17
+            </div>
+            <div class="submission-progress">
+              <div class="progress-label">
+                <span>Completion</span>
+                <span>100%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar-fill bg-green" style="width: 100%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="submission-item">
+            <div class="submission-header">
+              <span class="submission-title">Grade 6 Mastery Assessment</span>
+              <span class="submission-badge badge-pending">⏳ Pending</span>
+            </div>
+            <div class="submission-meta">
+              <strong>Submitted by:</strong> Riza C. Basa<br>
+              <strong>Submitted on:</strong> 2024-12-19
+            </div>
+            <div class="submission-progress">
+              <div class="progress-label">
+                <span>Under Review</span>
+                <span>85%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar-fill bg-blue" style="width: 85%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="submission-item">
+            <div class="submission-header">
+              <span class="submission-title">Quarterly Review Report</span>
+              <span class="submission-badge badge-approved">✓ Approved</span>
+            </div>
+            <div class="submission-meta">
+              <strong>Submitted by:</strong> Principal's Office<br>
+              <strong>Submitted on:</strong> 2024-12-13
+            </div>
+            <div class="submission-progress">
+              <div class="progress-label">
+                <span>Completion</span>
+                <span>100%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar-fill bg-green" style="width: 100%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="submission-item">
+            <div class="submission-header">
+              <span class="submission-title">School Performance Summary</span>
+              <span class="submission-badge badge-pending">⏳ Pending</span>
+            </div>
+            <div class="submission-meta">
+              <strong>Submitted by:</strong> Data Analytics Team<br>
+              <strong>Submitted on:</strong> 2024-12-20
+            </div>
+            <div class="submission-progress">
+              <div class="progress-label">
+                <span>In Progress</span>
+                <span>60%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-bar-fill bg-yellow" style="width: 60%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- DETAILED CLASS BREAKDOWN -->
     <div id="section-grades">
       <h2 class="section-title">Class Diagnostics & Competency Analysis</h2>
@@ -928,10 +1299,10 @@
             <table>
               <thead><tr><th>Subject</th><th>Mean</th><th>Visual MPS</th><th>Level</th></tr></thead>
               <tbody>
-                <tr><td><strong>English</strong></td><td>9.60</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 48%;"></div></div><span class="mps-value">48.00%</span></div></td><td>Low</td></tr>
-                <tr><td><strong>Filipino</strong></td><td>10.40</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 52%;"></div></div><span class="mps-value">52.00%</span></div></td><td>Nearly</td></tr>
-                <tr><td><strong>Mathematics</strong></td><td>9.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 45%;"></div></div><span class="mps-value">45.00%</span></div></td><td>Low</td></tr>
-                <tr><td><strong>GMRC</strong></td><td>11.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 55%;"></div></div><span class="mps-value">55.00%</span></div></td><td>Nearly</td></tr>
+                <tr><td><strong>English</strong></td><td>9.60</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 48%;"></div></div><span class="mps-value">48%</span></div></td><td>Low</td></tr>
+                <tr><td><strong>Filipino</strong></td><td>10.40</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 52%;"></div></div><span class="mps-value">52%</span></div></td><td>Nearly</td></tr>
+                <tr><td><strong>Mathematics</strong></td><td>9.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 45%;"></div></div><span class="mps-value">45%</span></div></td><td>Low</td></tr>
+                <tr><td><strong>GMRC</strong></td><td>11.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 55%;"></div></div><span class="mps-value">55%</span></div></td><td>Nearly</td></tr>
               </tbody>
             </table>
           </div>
@@ -951,9 +1322,9 @@
             <table>
               <thead><tr><th>Subject</th><th>Mean</th><th>Visual MPS</th><th>Level</th></tr></thead>
               <tbody>
-                <tr><td><strong>English</strong></td><td>7.60</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 38%;"></div></div><span class="mps-value">38.00%</span></div></td><td>Low</td></tr>
-                <tr><td><strong>Filipino</strong></td><td>10.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 50%;"></div></div><span class="mps-value">50.00%</span></div></td><td>Nearly</td></tr>
-                <tr><td><strong>Mathematics</strong></td><td>8.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 40%;"></div></div><span class="mps-value">40.00%</span></div></td><td>Low</td></tr>
+                <tr><td><strong>English</strong></td><td>7.60</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 38%;"></div></div><span class="mps-value">38%</span></div></td><td>Low</td></tr>
+                <tr><td><strong>Filipino</strong></td><td>10.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 50%;"></div></div><span class="mps-value">50%</span></div></td><td>Nearly</td></tr>
+                <tr><td><strong>Mathematics</strong></td><td>8.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 40%;"></div></div><span class="mps-value">40%</span></div></td><td>Low</td></tr>
               </tbody>
             </table>
           </div>
@@ -973,9 +1344,9 @@
             <table>
               <thead><tr><th>Subject</th><th>Mean</th><th>Visual MPS</th><th>Level</th></tr></thead>
               <tbody>
-                <tr><td><strong>English</strong></td><td>12.40</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 62%;"></div></div><span class="mps-value">62.00%</span></div></td><td>Nearly</td></tr>
-                <tr><td><strong>Filipino</strong></td><td>15.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-green" style="width: 75%;"></div></div><span class="mps-value">75.00%</span></div></td><td>Proficient</td></tr>
-                <tr><td><strong>Mathematics</strong></td><td>10.40</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 52%;"></div></div><span class="mps-value">52.00%</span></div></td><td>Nearly</td></tr>
+                <tr><td><strong>English</strong></td><td>12.40</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 62%;"></div></div><span class="mps-value">62%</span></div></td><td>Nearly</td></tr>
+                <tr><td><strong>Filipino</strong></td><td>15.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-green" style="width: 75%;"></div></div><span class="mps-value">75%</span></div></td><td>Prof</td></tr>
+                <tr><td><strong>Mathematics</strong></td><td>10.40</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 52%;"></div></div><span class="mps-value">52%</span></div></td><td>Nearly</td></tr>
               </tbody>
             </table>
           </div>
@@ -995,125 +1366,60 @@
             <table>
               <thead><tr><th>Subject</th><th>Mean</th><th>Visual MPS</th><th>Level</th></tr></thead>
               <tbody>
-                <tr><td><strong>English</strong></td><td>10.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 50%;"></div></div><span class="mps-value">50.00%</span></div></td><td>Nearly</td></tr>
-                <tr><td><strong>Mathematics</strong></td><td>9.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 45%;"></div></div><span class="mps-value">45.00%</span></div></td><td>Low</td></tr>
-                <tr><td><strong>Science</strong></td><td>9.60</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 48%;"></div></div><span class="mps-value">48.00%</span></div></td><td>Low</td></tr>
+                <tr><td><strong>English</strong></td><td>10.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 50%;"></div></div><span class="mps-value">50%</span></div></td><td>Nearly</td></tr>
+                <tr><td><strong>Mathematics</strong></td><td>9.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 45%;"></div></div><span class="mps-value">45%</span></div></td><td>Low</td></tr>
+                <tr><td><strong>Science</strong></td><td>9.60</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 48%;"></div></div><span class="mps-value">48%</span></div></td><td>Low</td></tr>
               </tbody>
             </table>
           </div>
           <div class="diagnostic-box">
-            <div class="diag-item diag-mastered"><div class="diag-title">✅ Mastered</div>Living vs non-living identification.</div>
-            <div class="diag-item diag-unmastered"><div class="diag-title">⚠️ Priority</div>Long division & prime factors.</div>
+            <div class="diag-item diag-mastered"><div class="diag-title">✅ Mastered</div>Descriptive writing, basic ecosystems.</div>
+            <div class="diag-item diag-unmastered"><div class="diag-title">⚠️ Priority</div>Data interpretation & fractions.</div>
           </div>
         </div>
 
         <!-- GRADE 5 -->
         <div class="grade-card">
           <div class="grade-header">
-            <div><h2>Grade 5 - LAUAAN</h2><span class="adviser">Adviser: Lendon B. Abonales</span></div>
-            <div class="meta-pills"><span class="pill">21 Tested</span><span class="pill pill-yellow">48.89% MPS</span></div>
+            <div><h2>Grade 5 - KALUSUGAN</h2><span class="adviser">Adviser: Marcelina S. Sumaguit</span></div>
+            <div class="meta-pills"><span class="pill">19 Tested</span><span class="pill pill-yellow">54.21% MPS</span></div>
           </div>
           <div class="table-container">
             <table>
               <thead><tr><th>Subject</th><th>Mean</th><th>Visual MPS</th><th>Level</th></tr></thead>
               <tbody>
-                <tr><td><strong>English</strong></td><td>8.29</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 41.43%;"></div></div><span class="mps-value">41.43%</span></div></td><td>Low</td></tr>
-                <tr><td><strong>Filipino</strong></td><td>13.33</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 66.67%;"></div></div><span class="mps-value">66.67%</span></div></td><td>Nearly</td></tr>
-                <tr><td><strong>Mathematics</strong></td><td>7.71</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 38.57%;"></div></div><span class="mps-value">38.57%</span></div></td><td>Low</td></tr>
+                <tr><td><strong>English</strong></td><td>11.20</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 56%;"></div></div><span class="mps-value">56%</span></div></td><td>Nearly</td></tr>
+                <tr><td><strong>Mathematics</strong></td><td>10.30</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 51.5%;"></div></div><span class="mps-value">51%</span></div></td><td>Nearly</td></tr>
+                <tr><td><strong>Science</strong></td><td>11.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 55%;"></div></div><span class="mps-value">55%</span></div></td><td>Nearly</td></tr>
               </tbody>
             </table>
           </div>
           <div class="diagnostic-box">
-            <div class="diag-item diag-mastered"><div class="diag-title">✅ Mastered</div>Filipino narrative story retelling.</div>
-            <div class="diag-item diag-unmastered"><div class="diag-title">⚠️ Priority</div>Dissimilar fractions & decimals.</div>
+            <div class="diag-item diag-mastered"><div class="diag-title">✅ Mastered</div>Literary analysis, ecosystems concepts.</div>
+            <div class="diag-item diag-unmastered"><div class="diag-title">⚠️ Priority</div>Algebraic equations & physical properties.</div>
           </div>
         </div>
 
         <!-- GRADE 6 -->
         <div class="grade-card">
           <div class="grade-header">
-            <div><h2>Grade 6 - YAKAL</h2><span class="adviser">Adviser: Mark Zoilo C. Tajonera</span></div>
-            <div class="meta-pills"><span class="pill">33 Tested</span><span class="pill pill-yellow">46.67% MPS</span></div>
+            <div><h2>Grade 6 - PUSO</h2><span class="adviser">Adviser: Riza C. Basa</span></div>
+            <div class="meta-pills"><span class="pill">18 Tested</span><span class="pill pill-yellow">48.89% MPS</span></div>
           </div>
           <div class="table-container">
             <table>
               <thead><tr><th>Subject</th><th>Mean</th><th>Visual MPS</th><th>Level</th></tr></thead>
               <tbody>
-                <tr><td><strong>English</strong></td><td>9.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 45%;"></div></div><span class="mps-value">45.00%</span></div></td><td>Low</td></tr>
-                <tr><td><strong>Filipino</strong></td><td>11.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 55%;"></div></div><span class="mps-value">55.00%</span></div></td><td>Nearly</td></tr>
-                <tr><td><strong>Mathematics</strong></td><td>8.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 40%;"></div></div><span class="mps-value">40.00%</span></div></td><td>Low</td></tr>
+                <tr><td><strong>English</strong></td><td>9.80</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 49%;"></div></div><span class="mps-value">49%</span></div></td><td>Low</td></tr>
+                <tr><td><strong>Mathematics</strong></td><td>9.60</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 48%;"></div></div><span class="mps-value">48%</span></div></td><td>Low</td></tr>
+                <tr><td><strong>Science</strong></td><td>9.20</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 46%;"></div></div><span class="mps-value">46%</span></div></td><td>Low</td></tr>
               </tbody>
             </table>
           </div>
           <div class="diagnostic-box">
-            <div class="diag-item diag-mastered"><div class="diag-title">✅ Mastered</div>Filipino sentence structure & charts.</div>
-            <div class="diag-item diag-unmastered"><div class="diag-title">⚠️ Priority</div>Ratio, proportions, and percentage.</div>
+            <div class="diag-item diag-mastered"><div class="diag-title">✅ Mastered</div>Essay structure & photosynthesis basics.</div>
+            <div class="diag-item diag-unmastered"><div class="diag-title">⚠️ Priority</div>Rational numbers & molecular structure.</div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- CONSOLIDATED VISUAL BAR CHART -->
-    <div id="section-chart" class="chart-container">
-      <div class="chart-header">
-        <h2>Comparative Section Performance Analysis</h2>
-      </div>
-      <div class="chart-scroll-wrapper">
-        <div class="chart-wrapper">
-          <div class="grid-line grid-100"><span>100%</span></div>
-          <div class="grid-line grid-75"><span>75% Target</span></div>
-          <div class="grid-line grid-50"><span>50%</span></div>
-          <div class="grid-line grid-25"><span>25%</span></div>
-
-          <div class="css-bar-chart">
-            <div class="chart-col">
-              <div class="bar-wrapper"><div class="bar-tooltip">50.0%</div><div class="bar bg-yellow" style="height: 50.0%;"></div></div>
-              <span class="col-label">Grade 1<br><strong>MAGKONO</strong></span>
-            </div>
-            <div class="chart-col">
-              <div class="bar-wrapper"><div class="bar-tooltip">42.7%</div><div class="bar bg-red" style="height: 42.7%;"></div></div>
-              <span class="col-label">Grade 2<br><strong>NARRA</strong></span>
-            </div>
-            <div class="chart-col">
-              <div class="bar-wrapper"><div class="bar-tooltip">63.0%</div><div class="bar bg-green" style="height: 63.0%;"></div></div>
-              <span class="col-label">Grade 3<br><strong>TOOG</strong></span>
-            </div>
-            <div class="chart-col">
-              <div class="bar-wrapper"><div class="bar-tooltip">47.7%</div><div class="bar bg-yellow" style="height: 47.7%;"></div></div>
-              <span class="col-label">Grade 4<br><strong>TUGAS</strong></span>
-            </div>
-            <div class="chart-col">
-              <div class="bar-wrapper"><div class="bar-tooltip">48.9%</div><div class="bar bg-yellow" style="height: 48.9%;"></div></div>
-              <span class="col-label">Grade 5<br><strong>LAUAAN</strong></span>
-            </div>
-            <div class="chart-col">
-              <div class="bar-wrapper"><div class="bar-tooltip">46.7%</div><div class="bar bg-yellow" style="height: 46.7%;"></div></div>
-              <span class="col-label">Grade 6<br><strong>YAKAL</strong></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- STRATEGIC ACTION PLAN -->
-    <div id="section-action">
-      <h2 class="section-title">Data-Driven Action Plan</h2>
-      <div class="action-plan-grid">
-        <div class="action-card">
-          <h4>🧮 1. Math Drills</h4>
-          <p>30-min daily math drills focusing on multiplication & fraction conversions across Grades 2-6.</p>
-        </div>
-        <div class="action-card">
-          <h4>📖 2. Reading Clinics</h4>
-          <p>Phonics remediation for Grade 1 & 2 non-readers; context-clues practice for Grades 4-6.</p>
-        </div>
-        <div class="action-card">
-          <h4>📌 3. Peer Mentoring</h4>
-          <p>Applying Grade 3 Filipino comprehension strategies across all grade sections.</p>
-        </div>
-        <div class="action-card">
-          <h4>📊 4. Risk Tracking</h4>
-          <p>Monthly monitoring to transition 36.15% at-risk learners toward the 75% target.</p>
         </div>
       </div>
     </div>
@@ -1123,100 +1429,67 @@
   <!-- FOOTER -->
   <div class="footer">
     <div class="footer-badges">
-      <div class="footer-badge">Consolidated by: Jasper S. Campado (AO-II / Testing Coordinator)</div>
-      <div class="footer-badge">Submitted to: Mr. Eric Palingcod (Principal I)</div>
+      <span class="footer-badge">📊 Analytics</span>
+      <span class="footer-badge">✓ Verified</span>
+      <span class="footer-badge">🔒 Secure</span>
+      <span class="footer-badge">⚡ Real-time</span>
     </div>
-    <p>© MAM-ON ELEMENTARY SCHOOL • Comprehensive Performance Dashboard</p>
+    <p>MAM-ON Elementary School • Performance Analytics Dashboard • SY 2026-2027 | Report Generated: 2024-12-20</p>
   </div>
 
-  <!-- SCRIPT ENGINE -->
   <script>
+    // Submission Tracker Data
+    const submissionData = [
+      { title: "Grade 1 Assessment Report", status: "approved", submitted: "2024-12-15", progress: 100 },
+      { title: "Grade 2 Diagnostics", status: "pending", submitted: "2024-12-18", progress: 75 },
+      { title: "Grade 3 Performance Data", status: "approved", submitted: "2024-12-14", progress: 100 },
+      { title: "Grade 4 Analytics Report", status: "rejected", submitted: "2024-12-16", progress: 50 },
+      { title: "Grade 5 Competency Matrix", status: "approved", submitted: "2024-12-17", progress: 100 },
+      { title: "Grade 6 Mastery Assessment", status: "pending", submitted: "2024-12-19", progress: 85 },
+      { title: "Quarterly Review Report", status: "approved", submitted: "2024-12-13", progress: 100 },
+      { title: "School Performance Summary", status: "pending", submitted: "2024-12-20", progress: 60 }
+    ];
+
+    function updateTrackerStats() {
+      const total = submissionData.length;
+      const pending = submissionData.filter(s => s.status === "pending").length;
+      const approved = submissionData.filter(s => s.status === "approved").length;
+      const rejected = submissionData.filter(s => s.status === "rejected").length;
+
+      document.getElementById("total-submissions").textContent = total;
+      document.getElementById("pending-count").textContent = pending;
+      document.getElementById("approved-count").textContent = approved;
+      document.getElementById("rejected-count").textContent = rejected;
+    }
+
+    // Initialize tracker on page load
+    document.addEventListener("DOMContentLoaded", updateTrackerStats);
+
+    // Print functions
     function applyPreset(preset) {
-      const chkKpi = document.getElementById('chk-kpi');
-      const chkMatrix = document.getElementById('chk-matrix');
-      const chkGrades = document.getElementById('chk-grades');
-      const chkChart = document.getElementById('chk-chart');
-      const chkAction = document.getElementById('chk-action');
-
-      if (preset === 'all') {
-        chkKpi.checked = true;
-        chkMatrix.checked = true;
-        chkGrades.checked = true;
-        chkChart.checked = true;
-        chkAction.checked = true;
-      } else if (preset === 'summary') {
-        chkKpi.checked = true;
-        chkMatrix.checked = true;
-        chkGrades.checked = false;
-        chkChart.checked = true;
-        chkAction.checked = true;
-      } else if (preset === 'grades') {
-        chkKpi.checked = false;
-        chkMatrix.checked = false;
-        chkGrades.checked = true;
-        chkChart.checked = false;
-        chkAction.checked = false;
-      }
-    }
-
-    function syncVisibility() {
-      document.getElementById('section-kpi').classList.toggle('print-hide', !document.getElementById('chk-kpi').checked);
-      document.getElementById('section-matrix').classList.toggle('print-hide', !document.getElementById('chk-matrix').checked);
-      document.getElementById('section-grades').classList.toggle('print-hide', !document.getElementById('chk-grades').checked);
-      document.getElementById('section-chart').classList.toggle('print-hide', !document.getElementById('chk-chart').checked);
-      document.getElementById('section-action').classList.toggle('print-hide', !document.getElementById('chk-action').checked);
-    }
-
-    function restoreVisibility() {
-      document.getElementById('section-kpi').classList.remove('print-hide');
-      document.getElementById('section-matrix').classList.remove('print-hide');
-      document.getElementById('section-grades').classList.remove('print-hide');
-      document.getElementById('section-chart').classList.remove('print-hide');
-      document.getElementById('section-action').classList.remove('print-hide');
-    }
-
-    function executeSmartPrint() {
-      syncVisibility();
-      window.print();
-      window.onafterprint = restoreVisibility;
+      document.getElementById('chk-kpi').checked = (preset === 'all' || preset === 'summary');
+      document.getElementById('chk-matrix').checked = (preset === 'all' || preset === 'summary');
+      document.getElementById('chk-grades').checked = (preset === 'all' || preset === 'grades');
+      document.getElementById('chk-chart').checked = (preset === 'all');
+      document.getElementById('chk-action').checked = (preset === 'all');
     }
 
     function executeSmartPDF() {
-      syncVisibility();
-      document.body.classList.add('pdf-export-mode');
-
+      const element = document.querySelector('.container');
       const opt = {
-        margin:       [8, 8, 8, 8],
-        filename:     'MAM-ON_ES_Performance_Analytics_Dashboard.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true, logging: false },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'landscape' }
+        margin: 10,
+        filename: 'MAM-ON-Dashboard-Report.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { orientation: 'landscape', unit: 'mm', format: 'a4' }
       };
+      html2pdf().set(opt).from(element).save();
+    }
 
-      html2pdf().set(opt).from(document.body).save().then(() => {
-        document.body.classList.remove('pdf-export-mode');
-        restoreVisibility();
-      });
+    function executeSmartPrint() {
+      window.print();
     }
   </script>
 
-  <!-- MOBILE TOUCH & CURSOR AMBIENT GLOW -->
-  <div class="cursor-glow"></div>
-  <script>
-    const glow = document.querySelector(".cursor-glow");
-    
-    function updateGlowPosition(e) {
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      glow.style.left = clientX + "px";
-      glow.style.top = clientY + "px";
-      glow.style.opacity = "1";
-    }
-
-    document.addEventListener("mousemove", updateGlowPosition);
-    document.addEventListener("touchmove", updateGlowPosition);
-    document.addEventListener("touchstart", updateGlowPosition);
-    document.addEventListener("mouseleave", () => glow.style.opacity = "0");
-  </script>
 </body>
 </html>
