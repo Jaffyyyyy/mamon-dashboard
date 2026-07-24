@@ -203,7 +203,36 @@
       position: relative;
       z-index: 10;
     }
+.period-tabs{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin:-20px auto 20px auto;
+  max-width:1280px;
+  padding:0 16px;
+}
 
+.period-tab{
+  background:#FFFFFF;
+  border:1px solid #CBD5E1;
+  color:#334155;
+  padding:10px 18px;
+  border-radius:10px;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.period-tab:hover{
+  background:#F8FAFC;
+}
+
+.period-tab.active{
+  background:#0D5FA8;
+  color:#FFFFFF;
+}
     /* SECTION TITLE */
     .section-title {
       font-size: 18px;
@@ -823,7 +852,13 @@
       <p class="subtitle">Comprehensive Performance Analytics & Institutional Diagnostic Report • SY 2026-2027</p>
     </div>
   </div>
-
+<div class="period-tabs">
+  <button class="period-tab active" data-period="overall">Overall</button>
+  <button class="period-tab" data-period="summative1">Summative 1</button>
+  <button class="period-tab" data-period="summative2">Summative 2</button>
+  <button class="period-tab" data-period="periodical1">Periodical 1</button>
+  <button class="period-tab" data-period="periodical2">Periodical 2</button>
+</div>
   <div class="container">
 
     <!-- EXECUTIVE KPI ANALYTICS GRID -->
@@ -854,7 +889,7 @@
         <div class="indicator-card">
           <div class="indicator-num">3</div>
           <div class="indicator-label">Total Learners</div>
-          <div class="indicator-value">130</div>
+          <div class="indicator-value">140</div>
           <div class="indicator-sub">100% Assessed</div>
           <span class="indicator-pill pill-green">Complete</span>
         </div>
@@ -890,9 +925,31 @@
           <div class="indicator-num">8</div>
           <div class="indicator-label">At-Risk Rate</div>
           <div class="indicator-value">36.15%</div>
-          <div class="indicator-sub">47 / 130 Learners</div>
+          <div class="indicator-sub">47 / 140 Learners</div>
           <span class="indicator-pill pill-yellow">High Intervention</span>
-        </div>
+        </div> 
+        
+        <div class="indicator-card">
+
+  <div class="indicator-num">9</div>
+
+  <div class="indicator-label">
+    Submission Rate
+  </div>
+
+  <div class="indicator-value">
+    25%
+  </div>
+
+  <div class="indicator-sub">
+    6 of 24 Expected Files
+  </div>
+
+  <span class="indicator-pill pill-yellow">
+    Current Uploads
+  </span>
+
+</div>
       </div>
     </div>
 
@@ -1118,7 +1175,76 @@
         </div>
       </div>
     </div>
+<!-- SUBMISSION TRACKER -->
 
+<div id="section-submissions" class="consolidation-report-card">
+
+  <div class="consolidation-header">
+
+    <div>
+      <h2>Submission Tracker</h2>
+      <p style="font-size:11px;color:#64748B;">
+        Assessment Submission Compliance Monitoring
+      </p>
+    </div>
+
+    <span class="consolidation-tag">
+      Tracking
+    </span>
+
+  </div>
+
+  <select id="submissionFilter">
+
+    <option value="overall">
+      Overall
+    </option>
+
+    <option value="summative1">
+      Summative 1
+    </option>
+
+    <option value="summative2">
+      Summative 2
+    </option>
+
+    <option value="periodical1">
+      Periodical 1
+    </option>
+
+    <option value="periodical2">
+      Periodical 2
+    </option>
+
+  </select>
+
+  <br><br>
+
+  <div class="table-container">
+
+    <table>
+
+      <thead>
+
+      <tr>
+        <th>Grade Level & Section</th>
+        <th>Responsible Teacher</th>
+        <th>Assessment Period</th>
+        <th>File Status</th>
+        <th>Upload Date</th>
+      </tr>
+
+      </thead>
+
+      <tbody id="submissionTableBody">
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
     <!-- STRATEGIC ACTION PLAN -->
     <div id="section-action">
       <h2 class="section-title">Data-Driven Action Plan</h2>
@@ -1143,7 +1269,50 @@
     </div>
 
   </div>
+<div class="analytical-card">
 
+  <h3>📝 Data Quality Notes</h3>
+
+  <ul style="font-size:12px;line-height:1.8;">
+
+    <li>
+      Analytics currently use uploaded Summative 1 datasets.
+    </li>
+
+    <li>
+      No Summative 2 assessment files available.
+    </li>
+
+    <li>
+      No Periodical 1 assessment files available.
+    </li>
+
+    <li>
+      No Periodical 2 assessment files available.
+    </li>
+
+    <li>
+      Total identified learners: 140.
+    </li>
+
+    <li>
+      Submission completion currently stands at
+      25% (6 of 24 expected grade-period files).
+    </li>
+
+    <li>
+      English, Reading & Literacy, and Language
+      were consolidated for reporting purposes.
+    </li>
+
+    <li>
+      Makabansa and Araling Panlipunan were
+      normalized for cross-grade reporting.
+    </li>
+
+  </ul>
+
+</div>
   <!-- FOOTER -->
   <div class="footer">
     <div class="footer-badges">
@@ -1221,7 +1390,144 @@
         document.body.classList.remove('pdf-export-mode');
         restoreVisibility();
       });
-    }
+    }/* ==========================
+   SUBMISSION TRACKER ENGINE
+========================== */
+
+const submissionData = [
+
+{
+grade:'Grade 1 - MAGKONO',
+teacher:'Jenny Queen L. Orillaneda',
+period:'summative1',
+status:'Submitted',
+date:'Available'
+},
+
+{
+grade:'Grade 2 - NARRA',
+teacher:'Maria Fatima R. Peñanueva',
+period:'summative1',
+status:'Submitted',
+date:'Available'
+},
+
+{
+grade:'Grade 3 - TOOG',
+teacher:'Jessa Mae R. Flores',
+period:'summative1',
+status:'Submitted',
+date:'Available'
+},
+
+{
+grade:'Grade 4 - TUGAS',
+teacher:'Alma C. Nayre',
+period:'summative1',
+status:'Submitted',
+date:'Available'
+},
+
+{
+grade:'Grade 5 - LAUAAN',
+teacher:'Lendon B. Abonales',
+period:'summative1',
+status:'Submitted',
+date:'Available'
+},
+
+{
+grade:'Grade 6 - YAKAL',
+teacher:'Mark Zoilo C. Tajonera',
+period:'summative1',
+status:'Submitted',
+date:'Available'
+}
+
+];
+
+function renderSubmissionTable(period){
+
+const tbody =
+document.getElementById('submissionTableBody');
+
+if(!tbody) return;
+
+tbody.innerHTML='';
+
+const records =
+period === 'overall'
+? submissionData
+: submissionData.filter(
+r => r.period === period
+);
+
+records.forEach(r => {
+
+const badge =
+r.status === 'Submitted'
+?
+'<span class="pill pill-green">Submitted</span>'
+:
+'<span class="pill pill-red">Pending / Overdue</span>';
+
+tbody.innerHTML += `
+<tr>
+<td>${r.grade}</td>
+<td>${r.teacher}</td>
+<td>${r.period}</td>
+<td>${badge}</td>
+<td>${r.date}</td>
+</tr>
+`;
+
+});
+
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+
+renderSubmissionTable('overall');
+
+const filter =
+document.getElementById('submissionFilter');
+
+if(filter){
+
+filter.addEventListener('change',e=>{
+renderSubmissionTable(e.target.value);
+});
+
+}
+
+document
+.querySelectorAll('.period-tab')
+.forEach(tab=>{
+
+tab.addEventListener('click',()=>{
+
+document
+.querySelectorAll('.period-tab')
+.forEach(t=>t.classList.remove('active'));
+
+tab.classList.add('active');
+
+if(filter){
+
+filter.value =
+tab.dataset.period;
+
+renderSubmissionTable(
+tab.dataset.period
+);
+
+}
+
+});
+
+});
+
+});
   </script>
 
   <!-- MOBILE TOUCH & CURSOR AMBIENT GLOW -->
