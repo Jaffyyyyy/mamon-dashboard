@@ -9,6 +9,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <style>
+    /* ===== CSS VARIABLES ===== */
     :root {
       --primary-dark: #091329;
       --primary: #0C2A55;
@@ -26,12 +27,15 @@
       --shadow-md: 0 8px 16px -2px rgba(9, 19, 41, 0.08);
     }
 
+    /* ===== GLOBAL STYLES ===== */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
       background-color: var(--bg);
@@ -41,9 +45,9 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* HEADER MATCHING IMAGE EXACT GRADIENT */
+    /* ===== HEADER SECTION ===== */
     .header {
-      background: linear-gradient(90deg, #091329 0%, #0C2A55 35%, #104988 70%, #0D5FA8 100%) !important;
+      background: linear-gradient(90deg, #091329 0%, #0C2A55 35%, #104988 70%, #0D5FA8 100%);
       color: white;
       padding: 35px 20px 65px 20px;
       text-align: center;
@@ -107,6 +111,7 @@
       line-height: 1.3;
     }
 
+    /* ===== CONTAINER ===== */
     .container {
       max-width: 1280px;
       margin: -35px auto 0 auto;
@@ -115,7 +120,124 @@
       z-index: 10;
     }
 
-    /* SECTION TITLE */
+    /* ===== PRINT & PDF TOOLBAR ===== */
+    .smart-print-bar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #FFFFFF;
+      border-bottom: 2px solid #E2E8F0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      padding: 10px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .print-bar-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: #091329;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .print-controls-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .preset-group {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .preset-btn {
+      background: #F1F5F9;
+      border: 1px solid #CBD5E1;
+      color: #334155;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .preset-btn:hover, 
+    .preset-btn:active {
+      background: #E2E8F0;
+      border-color: #94A3B8;
+    }
+
+    .print-checkboxes {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: #475569;
+      flex-wrap: wrap;
+    }
+
+    .print-checkboxes label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px 0;
+    }
+
+    .action-btn-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-action {
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .btn-pdf {
+      background: #059669;
+      color: white;
+      box-shadow: 0 2px 6px rgba(5, 150, 105, 0.25);
+    }
+
+    .btn-pdf:hover, 
+    .btn-pdf:active { 
+      background: #047857; 
+    }
+
+    .btn-print {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 2px 6px rgba(0, 132, 203, 0.25);
+    }
+
+    .btn-print:hover, 
+    .btn-print:active { 
+      background: #006eb0; 
+    }
+
+    /* ===== SECTION TITLE ===== */
     .section-title {
       font-size: 18px;
       font-weight: 700;
@@ -135,7 +257,7 @@
       border-radius: 4px;
     }
 
-    /* KPI CARDS */
+    /* ===== KPI CARDS ===== */
     .consolidation-report-card {
       background: var(--card-bg);
       border-radius: var(--radius);
@@ -235,7 +357,7 @@
       border-radius: 10px;
     }
 
-    /* PROFICIENCY BAND & SUBJECT MATRIX */
+    /* ===== GRID LAYOUTS ===== */
     .grid-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -243,6 +365,13 @@
       margin-bottom: 20px;
     }
 
+    @media (max-width: 768px) {
+      .grid-2col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== ANALYTICAL CARDS ===== */
     .analytical-card {
       background: var(--card-bg);
       border-radius: var(--radius);
@@ -258,7 +387,10 @@
       margin-bottom: 12px;
     }
 
-    .band-item { margin-bottom: 10px; }
+    .band-item { 
+      margin-bottom: 10px; 
+    }
+
     .band-info {
       display: flex;
       justify-content: space-between;
@@ -266,19 +398,25 @@
       font-weight: 600;
       margin-bottom: 4px;
     }
+
     .band-bar-track {
       height: 8px;
       background: #E2E8F0;
       border-radius: 6px;
       overflow: hidden;
     }
-    .band-bar-fill { height: 100%; border-radius: 6px; }
 
-    /* TABLES */
+    .band-bar-fill { 
+      height: 100%; 
+      border-radius: 6px; 
+    }
+
+    /* ===== TABLES ===== */
     .table-container { 
       overflow-x: auto; 
       -webkit-overflow-scrolling: touch;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -286,6 +424,7 @@
       text-align: left;
       min-width: 320px;
     }
+
     th {
       background: #FFFFFF;
       color: #64748B;
@@ -295,6 +434,7 @@
       font-size: 10px;
       border-bottom: 2px solid #F1F5F9;
     }
+
     td {
       padding: 8px 12px;
       border-bottom: 1px solid #F1F5F9;
@@ -307,6 +447,7 @@
       gap: 8px;
       min-width: 120px;
     }
+
     .progress-track {
       flex: 1;
       height: 6px;
@@ -314,10 +455,20 @@
       border-radius: 8px;
       overflow: hidden;
     }
-    .progress-fill { height: 100%; border-radius: 8px; }
-    .mps-value { font-weight: 700; font-size: 11px; min-width: 45px; text-align: right; }
 
-    /* GRADE CARDS GRID */
+    .progress-fill { 
+      height: 100%; 
+      border-radius: 8px; 
+    }
+
+    .mps-value { 
+      font-weight: 700; 
+      font-size: 11px; 
+      min-width: 45px; 
+      text-align: right; 
+    }
+
+    /* ===== GRADE CARDS ===== */
     .grade-cards-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -331,6 +482,7 @@
       box-shadow: var(--shadow-sm);
       overflow: hidden;
     }
+
     .grade-header {
       background: #F8FAFC;
       padding: 12px 18px;
@@ -341,9 +493,25 @@
       gap: 8px;
       flex-wrap: wrap;
     }
-    .grade-header h2 { font-size: 15px; font-weight: 700; color: #091329; }
-    .grade-header .adviser { font-size: 11px; color: #475569; font-weight: 600; }
-    .meta-pills { display: flex; gap: 6px; align-items: center; }
+
+    .grade-header h2 { 
+      font-size: 15px; 
+      font-weight: 700; 
+      color: #091329; 
+    }
+
+    .grade-header .adviser { 
+      font-size: 11px; 
+      color: #475569; 
+      font-weight: 600; 
+    }
+
+    .meta-pills { 
+      display: flex; 
+      gap: 6px; 
+      align-items: center; 
+    }
+
     .pill {
       background: #E0F2FE;
       color: #0284C7;
@@ -353,11 +521,23 @@
       font-weight: 700;
       white-space: nowrap;
     }
-    .pill-green { background: #D1FAE5; color: #065F46; }
-    .pill-yellow { background: #FEF3C7; color: #92400E; }
-    .pill-red { background: #FEE2E2; color: #991B1B; }
 
-    /* DIAGNOSTICS ITEM ANALYSIS */
+    .pill-green { 
+      background: #D1FAE5; 
+      color: #065F46; 
+    }
+
+    .pill-yellow { 
+      background: #FEF3C7; 
+      color: #92400E; 
+    }
+
+    .pill-red { 
+      background: #FEE2E2; 
+      color: #991B1B; 
+    }
+
+    /* ===== DIAGNOSTICS ===== */
     .diagnostic-box {
       background: #F8FAFC;
       padding: 10px 14px;
@@ -367,12 +547,32 @@
       gap: 10px;
       font-size: 11px;
     }
-    .diag-item { padding: 6px 10px; border-radius: 6px; }
-    .diag-mastered { background: #F0FDF4; border: 1px solid #BBF7D0; color: #166534; }
-    .diag-unmastered { background: #FEF2F2; border: 1px solid #FECACA; color: #991B1B; }
-    .diag-title { font-weight: 700; margin-bottom: 2px; text-transform: uppercase; font-size: 9px; }
 
-    /* BAR CHART SECTION */
+    .diag-item { 
+      padding: 6px 10px; 
+      border-radius: 6px; 
+    }
+
+    .diag-mastered { 
+      background: #F0FDF4; 
+      border: 1px solid #BBF7D0; 
+      color: #166534; 
+    }
+
+    .diag-unmastered { 
+      background: #FEF2F2; 
+      border: 1px solid #FECACA; 
+      color: #991B1B; 
+    }
+
+    .diag-title { 
+      font-weight: 700; 
+      margin-bottom: 2px; 
+      text-transform: uppercase; 
+      font-size: 9px; 
+    }
+
+    /* ===== CHARTS ===== */
     .chart-container {
       background: var(--card-bg);
       border-radius: var(--radius);
@@ -383,856 +583,126 @@
       margin-bottom: 20px;
       overflow: hidden;
     }
-    .chart-header { margin-bottom: 16px; }
-    .chart-header h2 { font-size: 15px; color: #091329; }
-    .chart-scroll-wrapper {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 8px;
-    }
-    .chart-wrapper {
-      position: relative;
-      height: 180px;
-      min-width: 480px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border-bottom: 2px solid #CBD5E1;
-      padding-top: 15px;
-    }
-    .grid-line {
-      position: absolute;
-      left: 0; right: 0;
-      border-top: 1px dashed #E2E8F0;
-      display: flex;
-      justify-content: flex-end;
-      padding-right: 6px;
-    }
-    .grid-line span { font-size: 9px; color: #94A3B8; background: var(--card-bg); padding: 0 4px; margin-top: -6px; }
-    .grid-100 { top: 0%; } .grid-75 { top: 25%; } .grid-50 { top: 50%; } .grid-25 { top: 75%; }
 
-    .css-bar-chart {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      height: 100%;
-      gap: 12px;
-      position: relative;
-      z-index: 2;
-    }
-    .chart-col { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; }
-    .bar-wrapper { width: 100%; max-width: 36px; height: 100%; display: flex; align-items: flex-end; background: #F1F5F9; border-radius: 6px 6px 0 0; position: relative; }
-    .bar { width: 100%; border-radius: 6px 6px 0 0; position: relative; }
-    .bar-tooltip {
-      position: absolute; top: -22px; left: 50%; transform: translateX(-50%);
-      font-size: 10px; font-weight: 700; color: #091329; background: #FFFFFF;
-      padding: 1px 4px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); border: 1px solid #E2E8F0; white-space: nowrap;
-    }
-    .col-label { font-size: 11px; font-weight: 600; color: #64748B; margin-top: 8px; text-align: center; line-height: 1.2; }
-
-    /* ACTION PLAN CARDS */
-    .action-plan-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-    .action-card { background: #FFFFFF; border-radius: 10px; padding: 14px; border: 1px solid #E2E8F0; }
-    .action-card h4 { font-size: 13px; color: #091329; margin-bottom: 6px; }
-    .action-card p { font-size: 11px; color: #64748B; line-height: 1.5; }
-
-    /* SUBMISSION TRACKER STYLES */
-    .submission-tracker-container {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      border: 1px solid #E2E8F0;
-      box-shadow: var(--shadow-sm);
-      padding: 20px;
-      margin-bottom: 20px;
+    .chart-header { 
+      margin-bottom: 16px; 
     }
 
-    .tracker-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-      gap: 10px;
-      flex-wrap: wrap;
+    .chart-header h2 { 
+      font-size: 15px; 
+      color: #091329; 
     }
 
-    .tracker-header h3 {
-      font-size: 16px;
-      font-weight: 800;
-      color: #091329;
-    }
-
-    .tracker-stats {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .tracker-stat {
-      background: #F8FAFC;
-      border: 1px solid #E2E8F0;
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 12px;
-      font-weight: 600;
-      color: #475569;
-    }
-
-    .tracker-stat-value {
-      font-size: 14px;
-      font-weight: 800;
-      color: #091329;
-      display: block;
-      margin-top: 2px;
-    }
-
-    .submissions-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 14px;
-    }
-
-    .submission-item {
-      background: #F8FAFC;
-      border: 1px solid #E2E8F0;
-      border-radius: 10px;
-      padding: 14px;
-      transition: all 0.2s ease;
-    }
-
-    .submission-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      border-color: var(--accent);
-    }
-
-    .submission-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
-
-    .submission-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: #091329;
-    }
-
-    .submission-badge {
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 12px;
-      white-space: nowrap;
-    }
-
-    .badge-pending {
-      background: #FEF3C7;
-      color: #92400E;
-    }
-
-    .badge-approved {
-      background: #D1FAE5;
-      color: #065F46;
-    }
-
-    .badge-rejected {
-      background: #FEE2E2;
-      color: #991B1B;
-    }
-
-    .badge-submitted {
-      background: #DBEAFE;
-      color: #1e40af;
-    }
-
-    .submission-meta {
-      font-size: 11px;
-      color: #64748B;
-      margin-bottom: 8px;
-    }
-
-    .submission-progress {
-      margin-top: 10px;
-    }
-
-    .progress-label {
-      font-size: 10px;
-      font-weight: 600;
-      color: #475569;
-      margin-bottom: 4px;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .progress-bar {
-      height: 6px;
-      background: #E2E8F0;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      border-radius: 8px;
-      transition: width 0.3s ease;
-    }
-
-    .submission-empty {
-      text-align: center;
-      padding: 40px 20px;
-      color: #94A3B8;
-    }
-
-    .submission-empty-icon {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
-
-    .submission-empty p {
-      font-size: 12px;
-      color: #64748B;
-    }
-
-    /* COLOR GRADIENTS FOR BARS */
-    .bg-green { background: linear-gradient(180deg, #34D399, #059669); }
-    .bg-yellow { background: linear-gradient(180deg, #FBBF24, #D97706); }
-    .bg-red { background: linear-gradient(180deg, #F87171, #DC2626); }
-    .bg-blue { background: linear-gradient(180deg, #60A5FA, #3B82F6); }
-
-    /* FOOTER */
-    .footer { text-align: center; padding: 20px 20px 10px 20px; color: #94A3B8; font-size: 11px; }
-    .footer-badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
-    .footer-badge { background: #E2E8F0; border: 1px solid #CBD5E1; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; color: #334155; }
-
-    body { position: relative; overflow-x: hidden; }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at 10% 20%, rgba(0,132,203,.06), transparent 30%), radial-gradient(circle at 90% 70%, rgba(13,95,168,.06), transparent 30%);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .consolidation-report-card, .analytical-card, .grade-card, .action-card, .chart-container, .submission-tracker-container {
-      background: rgba(255, 255, 255, 0.92) !important;
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(226, 232, 240, 0.8);
-      transition: all .35s ease;
-    }
-    @media (hover: hover) {
-      .consolidation-report-card:hover, .analytical-card:hover, .grade-card:hover, .action-card:hover, .indicator-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 16px 32px rgba(9, 19, 41, 0.1), 0 8px 16px rgba(0, 132, 203, 0.06);
-      }
-    }
-
-    .bar, .progress-fill, .band-bar-fill { animation: growBar 1.2s ease-out; }
-    @keyframes growBar { from { opacity: 0.3; transform: scaleY(0.2); } to { opacity: 1; transform: scaleY(1); } }
-    
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-thumb { background: #0084CB; border-radius: 10px; }
-    .cursor-glow {
-      position: fixed;
-      width: 250px;
-      height: 250px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0,132,203,.12), transparent 70%);
-      pointer-events: none;
-      transform: translate(-50%,-50%);
-      z-index: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    /* MOBILE & TABLET MEDIA QUERIES */
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .header {
         flex-direction: column;
         gap: 20px;
-        padding: 25px 20px 50px 20px;
+        padding: 25px 16px 50px 16px;
       }
+
       .header-content {
-        width: 100%;
+        min-width: 100%;
       }
+
       .header h1 {
         font-size: 22px;
       }
-      .header-logo-img {
-        width: 100px;
-        height: 100px;
-      }
-      .container {
-        padding: 0 10px;
-      }
-      .grid-2col {
-        grid-template-columns: 1fr;
-      }
-      .diagnostic-box {
-        grid-template-columns: 1fr;
-      }
-      .submissions-list {
-        grid-template-columns: 1fr;
-      }
-      .tracker-stats {
-        justify-content: space-between;
-      }
-    }
 
-    @media (max-width: 480px) {
-      .header {
-        padding: 20px 15px 40px 15px;
-      }
-      .header h1 {
-        font-size: 18px;
-      }
-      .header-logo-img {
-        width: 80px;
-        height: 80px;
-      }
       .indicators-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-      }
-      .indicator-card {
-        padding: 10px;
-      }
-      .indicator-value {
-        font-size: 16px;
-      }
-      .indicator-label {
-        font-size: 9px;
-      }
-      .indicator-sub {
-        font-size: 10px;
-      }
-      .action-plan-grid {
         grid-template-columns: 1fr;
-      }
-      .submissions-list {
-        grid-template-columns: 1fr;
-      }
-      .tracker-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .tracker-stats {
-        width: 100%;
-        flex-direction: row;
       }
     }
 
-    @page {
-      size: A4 landscape;
-      margin: 8mm;
+    /* ===== PRINT STYLES ===== */
+    @media print {
+      .smart-print-bar {
+        display: none;
+      }
+
+      .header {
+        background: linear-gradient(90deg, #091329 0%, #0C2A55 35%, #104988 70%, #0D5FA8 100%);
+      }
+
+      body {
+        padding-bottom: 0;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER WITH NEW LOGO -->
-  <div class="header">
+  <!-- HEADER WITH LOGO -->
+  <header class="header">
     <div class="header-logo-container">
-      <img src="https://drive.google.com/uc?id=1Um1cbC30Hm8IP7gBvFDcASGfasfLtibR" alt="MAM-ON School Logo" class="header-logo-img">
+      <img 
+        src="https://cdn-icons-png.flaticon.com/512/3050/3050159.png" 
+        alt="MAM-ON Elementary School Logo" 
+        class="header-logo-img"
+      >
     </div>
     <div class="header-content">
       <h1>MAM-ON ELEMENTARY SCHOOL</h1>
-      <p class="location-tag">Km. 10, Tubo-tubo, Cagwait, Surigao del Sur • School ID: 132649 • Est. 1998</p>
-      <p class="subtitle">Comprehensive Performance Analytics & Institutional Diagnostic Report • SY 2026-2027</p>
+      <div class="location-tag">📍 Performance Analytics Dashboard</div>
+      <div class="subtitle">Student Achievement & Learning Progress Monitoring System</div>
+    </div>
+  </header>
+
+  <!-- PRINT TOOLBAR -->
+  <div class="smart-print-bar">
+    <span class="print-bar-title">📊 Dashboard Controls</span>
+    <div class="print-controls-group">
+      <div class="preset-group">
+        <button class="preset-btn">Full Report</button>
+        <button class="preset-btn">Summary</button>
+      </div>
+      <div class="print-checkboxes">
+        <label><input type="checkbox" checked> Include Charts</label>
+        <label><input type="checkbox" checked> Include Tables</label>
+      </div>
+      <div class="action-btn-group">
+        <button class="btn-action btn-pdf">📥 Download PDF</button>
+        <button class="btn-action btn-print">🖨️ Print</button>
+      </div>
     </div>
   </div>
 
+  <!-- MAIN CONTENT CONTAINER -->
   <div class="container">
-
-    <!-- EXECUTIVE KPI ANALYTICS GRID -->
-    <div id="section-kpi" class="consolidation-report-card">
+    <!-- Your content sections go here -->
+    <section class="consolidation-report-card">
       <div class="consolidation-header">
-        <div>
-          <h2>Executive Key Performance Indicators (KPIs)</h2>
-          <p style="font-size: 11px; color: #64748B;">Institutional Assessment Summary across Grades 1 to 6</p>
-        </div>
-        <span class="consolidation-tag">Data Summary</span>
+        <h2>School Performance Summary</h2>
+        <span class="consolidation-tag">Overview</span>
       </div>
-
       <div class="indicators-grid">
-        <div class="indicator-card">
-          <div class="indicator-num">1</div>
-          <div class="indicator-label">Overall MPS</div>
-          <div class="indicator-value">51.96%</div>
-          <div class="indicator-sub">Target: 75.00%</div>
-          <span class="indicator-pill pill-yellow">Nearly Proficient</span>
-        </div>
-        <div class="indicator-card">
-          <div class="indicator-num">2</div>
-          <div class="indicator-label">Target Gap</div>
-          <div class="indicator-value">-23.04%</div>
-          <div class="indicator-sub">Variance to Goal</div>
-          <span class="indicator-pill pill-red">Needs Action</span>
-        </div>
-        <div class="indicator-card">
-          <div class="indicator-num">3</div>
-          <div class="indicator-label">Total Learners</div>
-          <div class="indicator-value">130</div>
-          <div class="indicator-sub">100% Assessed</div>
-          <span class="indicator-pill pill-green">Complete</span>
-        </div>
-        <div class="indicator-card">
-          <div class="indicator-num">4</div>
-          <div class="indicator-label">Highest Subject</div>
-          <div class="indicator-value">Filipino</div>
-          <div class="indicator-sub">Average MPS: 59.73%</div>
-          <span class="indicator-pill pill-green">Leading Subject</span>
-        </div>
-        <div class="indicator-card">
-          <div class="indicator-num">5</div>
-          <div class="indicator-label">Lowest Subject</div>
-          <div class="indicator-value">Mathematics</div>
-          <div class="indicator-sub">Average MPS: 43.43%</div>
-          <span class="indicator-pill pill-red">Priority Focus</span>
-        </div>
-        <div class="indicator-card">
-          <div class="indicator-num">6</div>
-          <div class="indicator-label">Top Section</div>
-          <div class="indicator-value">Grade 3</div>
-          <div class="indicator-sub">TOOG (63.00% MPS)</div>
-          <span class="indicator-pill pill-green">Class Exemplar</span>
-        </div>
-        <div class="indicator-card">
-          <div class="indicator-num">7</div>
-          <div class="indicator-label">Priority Section</div>
-          <div class="indicator-value">Grade 2</div>
-          <div class="indicator-sub">NARRA (42.67% MPS)</div>
-          <span class="indicator-pill pill-red">Critical Focus</span>
-        </div>
-        <div class="indicator-card">
-          <div class="indicator-num">8</div>
-          <div class="indicator-label">At-Risk Rate</div>
-          <div class="indicator-value">36.15%</div>
-          <div class="indicator-sub">47 / 130 Learners</div>
-          <span class="indicator-pill pill-yellow">High Intervention</span>
-        </div>
+        <!-- KPI cards will be populated here -->
       </div>
-    </div>
-
-    <!-- PROFICIENCY BANDS & SUBJECT MATRIX -->
-    <div id="section-matrix" class="grid-2col">
-      <div class="analytical-card">
-        <h3>📊 Learner Proficiency Bands</h3>
-        <div class="band-item">
-          <div class="band-info"><span>Proficient (75% - 100%)</span><span style="color: #059669;">17.69% (23)</span></div>
-          <div class="band-bar-track"><div class="band-bar-fill bg-green" style="width: 17.69%;"></div></div>
-        </div>
-        <div class="band-item">
-          <div class="band-info"><span>Nearly Proficient (50% - 74%)</span><span style="color: #D97706;">46.15% (60)</span></div>
-          <div class="band-bar-track"><div class="band-bar-fill bg-yellow" style="width: 46.15%;"></div></div>
-        </div>
-        <div class="band-item">
-          <div class="band-info"><span>Low Proficient (25% - 49%)</span><span style="color: #DC2626;">33.85% (44)</span></div>
-          <div class="band-bar-track"><div class="band-bar-fill bg-red" style="width: 33.85%;"></div></div>
-        </div>
-        <div class="band-item">
-          <div class="band-info"><span>Not Proficient (0% - 24%)</span><span style="color: #475569;">2.31% (3)</span></div>
-          <div class="band-bar-track"><div class="band-bar-fill" style="width: 2.31%; background: #64748B;"></div></div>
-        </div>
-      </div>
-
-      <div class="analytical-card">
-        <h3>📚 Subject Mastery Matrix</h3>
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr><th>Subject Area</th><th>Avg Mean</th><th>Subject MPS</th><th>Target Gap</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><strong>Filipino</strong></td><td>11.95 / 20</td><td><strong style="color: #059669;">59.73%</strong></td><td>-15.27%</td></tr>
-              <tr><td><strong>GMRC</strong></td><td>11.00 / 20</td><td><strong style="color: #059669;">55.00%</strong></td><td>-20.00%</td></tr>
-              <tr><td><strong>Science</strong></td><td>9.60 / 20</td><td><strong style="color: #D97706;">48.00%</strong></td><td>-27.00%</td></tr>
-              <tr><td><strong>English</strong></td><td>9.48 / 20</td><td><strong style="color: #D97706;">47.41%</strong></td><td>-27.59%</td></tr>
-              <tr><td><strong>Mathematics</strong></td><td>8.69 / 20</td><td><strong style="color: #DC2626;">43.43%</strong></td><td>-31.57%</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- SUBMISSION TRACKER SECTION -->
-    <div id="section-tracker">
-      <h2 class="section-title">📋 Submission Tracker</h2>
-
-      <div class="submission-tracker-container">
-        <div class="tracker-header">
-          <h3>Active Submissions & Status Overview</h3>
-          <div class="tracker-stats">
-            <div class="tracker-stat">
-              <span>Total Submissions</span>
-              <span class="tracker-stat-value" id="total-submissions">8</span>
-            </div>
-            <div class="tracker-stat">
-              <span>Pending</span>
-              <span class="tracker-stat-value" style="color: #F59E0B;" id="pending-count">3</span>
-            </div>
-            <div class="tracker-stat">
-              <span>Approved</span>
-              <span class="tracker-stat-value" style="color: #10B981;" id="approved-count">4</span>
-            </div>
-            <div class="tracker-stat">
-              <span>Rejected</span>
-              <span class="tracker-stat-value" style="color: #EF4444;" id="rejected-count">1</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="submissions-list" id="submissions-list">
-          <!-- Submission Items -->
-          <div class="submission-item">
-            <div class="submission-header">
-              <span class="submission-title">Grade 1 Assessment Report</span>
-              <span class="submission-badge badge-approved">✓ Approved</span>
-            </div>
-            <div class="submission-meta">
-              <strong>Submitted by:</strong> Jenny Queen L. Orillaneda<br>
-              <strong>Submitted on:</strong> 2024-12-15
-            </div>
-            <div class="submission-progress">
-              <div class="progress-label">
-                <span>Completion</span>
-                <span>100%</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-bar-fill bg-green" style="width: 100%;"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="submission-item">
-            <div class="submission-header">
-              <span class="submission-title">Grade 2 Diagnostics</span>
-              <span class="submission-badge badge-pending">⏳ Pending</span>
-            </div>
-            <div class="submission-meta">
-              <strong>Submitted by:</strong> Maria Fatima R. Peñanueva<br>
-              <strong>Submitted on:</strong> 2024-12-18
-            </div>
-            <div class="submission-progress">
-              <div class="progress-label">
-                <span>Under Review</span>
-                <span>75%</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-bar-fill bg-yellow" style="width: 75%;"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="submission-item">
-            <div class="submission-header">
-              <span class="submission-title">Grade 3 Performance Data</span>
-              <span class="submission-badge badge-approved">✓ Approved</span>
-            </div>
-            <div class="submission-meta">
-              <strong>Submitted by:</strong> Jessa Mae R. Flores<br>
-              <strong>Submitted on:</strong> 2024-12-14
-            </div>
-            <div class="submission-progress">
-              <div class="progress-label">
-                <span>Completion</span>
-                <span>100%</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-bar-fill bg-green" style="width: 100%;"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="submission-item">
-            <div class="submission-header">
-              <span class="submission-title">Grade 4 Analytics Report</span>
-              <span class="submission-badge badge-rejected">✗ Rejected</span>
-            </div>
-            <div class="submission-meta">
-              <strong>Submitted by:</strong> Alma C. Nayre<br>
-              <strong>Submitted on:</strong> 2024-12-16
-            </div>
-            <div class="submission-progress">
-              <div class="progress-label">
-                <span>Revision Needed</span>
-                <span>50%</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-bar-fill bg-red" style="width: 50%;"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="submission-item">
-            <div class="submission-header">
-              <span class="submission-title">Grade 5 Competency Matrix</span>
-              <span class="submission-badge badge-approved">✓ Approved</span>
-            </div>
-            <div class="submission-meta">
-              <strong>Submitted by:</strong> Marcelina S. Sumaguit<br>
-              <strong>Submitted on:</strong> 2024-12-17
-            </div>
-            <div class="submission-progress">
-              <div class="progress-label">
-                <span>Completion</span>
-                <span>100%</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-bar-fill bg-green" style="width: 100%;"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="submission-item">
-            <div class="submission-header">
-              <span class="submission-title">Grade 6 Mastery Assessment</span>
-              <span class="submission-badge badge-pending">⏳ Pending</span>
-            </div>
-            <div class="submission-meta">
-              <strong>Submitted by:</strong> Riza C. Basa<br>
-              <strong>Submitted on:</strong> 2024-12-19
-            </div>
-            <div class="submission-progress">
-              <div class="progress-label">
-                <span>Under Review</span>
-                <span>85%</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-bar-fill bg-blue" style="width: 85%;"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="submission-item">
-            <div class="submission-header">
-              <span class="submission-title">Quarterly Review Report</span>
-              <span class="submission-badge badge-approved">✓ Approved</span>
-            </div>
-            <div class="submission-meta">
-              <strong>Submitted by:</strong> Principal's Office<br>
-              <strong>Submitted on:</strong> 2024-12-13
-            </div>
-            <div class="submission-progress">
-              <div class="progress-label">
-                <span>Completion</span>
-                <span>100%</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-bar-fill bg-green" style="width: 100%;"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="submission-item">
-            <div class="submission-header">
-              <span class="submission-title">School Performance Summary</span>
-              <span class="submission-badge badge-pending">⏳ Pending</span>
-            </div>
-            <div class="submission-meta">
-              <strong>Submitted by:</strong> Data Analytics Team<br>
-              <strong>Submitted on:</strong> 2024-12-20
-            </div>
-            <div class="submission-progress">
-              <div class="progress-label">
-                <span>In Progress</span>
-                <span>60%</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-bar-fill bg-yellow" style="width: 60%;"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DETAILED CLASS BREAKDOWN -->
-    <div id="section-grades">
-      <h2 class="section-title">Class Diagnostics & Competency Analysis</h2>
-
-      <div class="grade-cards-grid">
-        <!-- GRADE 1 -->
-        <div class="grade-card">
-          <div class="grade-header">
-            <div><h2>Grade 1 - MAGKONO</h2><span class="adviser">Adviser: Jenny Queen L. Orillaneda</span></div>
-            <div class="meta-pills"><span class="pill">20 Tested</span><span class="pill pill-yellow">50.00% MPS</span></div>
-          </div>
-          <div class="table-container">
-            <table>
-              <thead><tr><th>Subject</th><th>Mean</th><th>Visual MPS</th><th>Level</th></tr></thead>
-              <tbody>
-                <tr><td><strong>English</strong></td><td>9.60</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 48%;"></div></div><span class="mps-value">48%</span></div></td><td>Low</td></tr>
-                <tr><td><strong>Filipino</strong></td><td>10.40</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 52%;"></div></div><span class="mps-value">52%</span></div></td><td>Nearly</td></tr>
-                <tr><td><strong>Mathematics</strong></td><td>9.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 45%;"></div></div><span class="mps-value">45%</span></div></td><td>Low</td></tr>
-                <tr><td><strong>GMRC</strong></td><td>11.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 55%;"></div></div><span class="mps-value">55%</span></div></td><td>Nearly</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="diagnostic-box">
-            <div class="diag-item diag-mastered"><div class="diag-title">✅ Mastered</div>Primary colors & polite expressions.</div>
-            <div class="diag-item diag-unmastered"><div class="diag-title">⚠️ Priority</div>Letter-sound & word math stories.</div>
-          </div>
-        </div>
-
-        <!-- GRADE 2 -->
-        <div class="grade-card">
-          <div class="grade-header">
-            <div><h2>Grade 2 - NARRA</h2><span class="adviser">Adviser: Maria Fatima R. Peñanueva</span></div>
-            <div class="meta-pills"><span class="pill">20 Tested</span><span class="pill pill-red">42.67% MPS</span></div>
-          </div>
-          <div class="table-container">
-            <table>
-              <thead><tr><th>Subject</th><th>Mean</th><th>Visual MPS</th><th>Level</th></tr></thead>
-              <tbody>
-                <tr><td><strong>English</strong></td><td>7.60</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 38%;"></div></div><span class="mps-value">38%</span></div></td><td>Low</td></tr>
-                <tr><td><strong>Filipino</strong></td><td>10.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 50%;"></div></div><span class="mps-value">50%</span></div></td><td>Nearly</td></tr>
-                <tr><td><strong>Mathematics</strong></td><td>8.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 40%;"></div></div><span class="mps-value">40%</span></div></td><td>Low</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="diagnostic-box">
-            <div class="diag-item diag-mastered"><div class="diag-title">✅ Mastered</div>Animal naming & basic counting 1-100.</div>
-            <div class="diag-item diag-unmastered"><div class="diag-title">⚠️ Priority</div>Multi-step word math & reading fluency.</div>
-          </div>
-        </div>
-
-        <!-- GRADE 3 -->
-        <div class="grade-card">
-          <div class="grade-header">
-            <div><h2>Grade 3 - TOOG</h2><span class="adviser">Adviser: Jessa Mae R. Flores</span></div>
-            <div class="meta-pills"><span class="pill">20 Tested</span><span class="pill pill-green">63.00% MPS</span></div>
-          </div>
-          <div class="table-container">
-            <table>
-              <thead><tr><th>Subject</th><th>Mean</th><th>Visual MPS</th><th>Level</th></tr></thead>
-              <tbody>
-                <tr><td><strong>English</strong></td><td>12.40</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 62%;"></div></div><span class="mps-value">62%</span></div></td><td>Nearly</td></tr>
-                <tr><td><strong>Filipino</strong></td><td>15.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-green" style="width: 75%;"></div></div><span class="mps-value">75%</span></div></td><td>Prof</td></tr>
-                <tr><td><strong>Mathematics</strong></td><td>10.40</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 52%;"></div></div><span class="mps-value">52%</span></div></td><td>Nearly</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="diagnostic-box">
-            <div class="diag-item diag-mastered"><div class="diag-title">✅ Mastered</div>Listening comprehension in Filipino.</div>
-            <div class="diag-item diag-unmastered"><div class="diag-title">⚠️ Priority</div>Multiplication scenario problems.</div>
-          </div>
-        </div>
-
-        <!-- GRADE 4 -->
-        <div class="grade-card">
-          <div class="grade-header">
-            <div><h2>Grade 4 - TUGAS</h2><span class="adviser">Adviser: Alma C. Nayre</span></div>
-            <div class="meta-pills"><span class="pill">16 Tested</span><span class="pill pill-yellow">47.67% MPS</span></div>
-          </div>
-          <div class="table-container">
-            <table>
-              <thead><tr><th>Subject</th><th>Mean</th><th>Visual MPS</th><th>Level</th></tr></thead>
-              <tbody>
-                <tr><td><strong>English</strong></td><td>10.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 50%;"></div></div><span class="mps-value">50%</span></div></td><td>Nearly</td></tr>
-                <tr><td><strong>Mathematics</strong></td><td>9.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 45%;"></div></div><span class="mps-value">45%</span></div></td><td>Low</td></tr>
-                <tr><td><strong>Science</strong></td><td>9.60</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 48%;"></div></div><span class="mps-value">48%</span></div></td><td>Low</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="diagnostic-box">
-            <div class="diag-item diag-mastered"><div class="diag-title">✅ Mastered</div>Descriptive writing, basic ecosystems.</div>
-            <div class="diag-item diag-unmastered"><div class="diag-title">⚠️ Priority</div>Data interpretation & fractions.</div>
-          </div>
-        </div>
-
-        <!-- GRADE 5 -->
-        <div class="grade-card">
-          <div class="grade-header">
-            <div><h2>Grade 5 - KALUSUGAN</h2><span class="adviser">Adviser: Marcelina S. Sumaguit</span></div>
-            <div class="meta-pills"><span class="pill">19 Tested</span><span class="pill pill-yellow">54.21% MPS</span></div>
-          </div>
-          <div class="table-container">
-            <table>
-              <thead><tr><th>Subject</th><th>Mean</th><th>Visual MPS</th><th>Level</th></tr></thead>
-              <tbody>
-                <tr><td><strong>English</strong></td><td>11.20</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 56%;"></div></div><span class="mps-value">56%</span></div></td><td>Nearly</td></tr>
-                <tr><td><strong>Mathematics</strong></td><td>10.30</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 51.5%;"></div></div><span class="mps-value">51%</span></div></td><td>Nearly</td></tr>
-                <tr><td><strong>Science</strong></td><td>11.00</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 55%;"></div></div><span class="mps-value">55%</span></div></td><td>Nearly</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="diagnostic-box">
-            <div class="diag-item diag-mastered"><div class="diag-title">✅ Mastered</div>Literary analysis, ecosystems concepts.</div>
-            <div class="diag-item diag-unmastered"><div class="diag-title">⚠️ Priority</div>Algebraic equations & physical properties.</div>
-          </div>
-        </div>
-
-        <!-- GRADE 6 -->
-        <div class="grade-card">
-          <div class="grade-header">
-            <div><h2>Grade 6 - PUSO</h2><span class="adviser">Adviser: Riza C. Basa</span></div>
-            <div class="meta-pills"><span class="pill">18 Tested</span><span class="pill pill-yellow">48.89% MPS</span></div>
-          </div>
-          <div class="table-container">
-            <table>
-              <thead><tr><th>Subject</th><th>Mean</th><th>Visual MPS</th><th>Level</th></tr></thead>
-              <tbody>
-                <tr><td><strong>English</strong></td><td>9.80</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-yellow" style="width: 49%;"></div></div><span class="mps-value">49%</span></div></td><td>Low</td></tr>
-                <tr><td><strong>Mathematics</strong></td><td>9.60</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 48%;"></div></div><span class="mps-value">48%</span></div></td><td>Low</td></tr>
-                <tr><td><strong>Science</strong></td><td>9.20</td><td><div class="progress-cell"><div class="progress-track"><div class="progress-fill bg-red" style="width: 46%;"></div></div><span class="mps-value">46%</span></div></td><td>Low</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="diagnostic-box">
-            <div class="diag-item diag-mastered"><div class="diag-title">✅ Mastered</div>Essay structure & photosynthesis basics.</div>
-            <div class="diag-item diag-unmastered"><div class="diag-title">⚠️ Priority</div>Rational numbers & molecular structure.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- FOOTER -->
-  <div class="footer">
-    <div class="footer-badges">
-      <span class="footer-badge">📊 Analytics</span>
-      <span class="footer-badge">✓ Verified</span>
-      <span class="footer-badge">🔒 Secure</span>
-      <span class="footer-badge">⚡ Real-time</span>
-    </div>
-    <p>MAM-ON Elementary School • Performance Analytics Dashboard • SY 2026-2027 | Report Generated: 2024-12-20</p>
+    </section>
   </div>
 
   <script>
-    // Submission Tracker Data
-    const submissionData = [
-      { title: "Grade 1 Assessment Report", status: "approved", submitted: "2024-12-15", progress: 100 },
-      { title: "Grade 2 Diagnostics", status: "pending", submitted: "2024-12-18", progress: 75 },
-      { title: "Grade 3 Performance Data", status: "approved", submitted: "2024-12-14", progress: 100 },
-      { title: "Grade 4 Analytics Report", status: "rejected", submitted: "2024-12-16", progress: 50 },
-      { title: "Grade 5 Competency Matrix", status: "approved", submitted: "2024-12-17", progress: 100 },
-      { title: "Grade 6 Mastery Assessment", status: "pending", submitted: "2024-12-19", progress: 85 },
-      { title: "Quarterly Review Report", status: "approved", submitted: "2024-12-13", progress: 100 },
-      { title: "School Performance Summary", status: "pending", submitted: "2024-12-20", progress: 60 }
-    ];
-
-    function updateTrackerStats() {
-      const total = submissionData.length;
-      const pending = submissionData.filter(s => s.status === "pending").length;
-      const approved = submissionData.filter(s => s.status === "approved").length;
-      const rejected = submissionData.filter(s => s.status === "rejected").length;
-
-      document.getElementById("total-submissions").textContent = total;
-      document.getElementById("pending-count").textContent = pending;
-      document.getElementById("approved-count").textContent = approved;
-      document.getElementById("rejected-count").textContent = rejected;
+    // PDF Export Function
+    function exportPDF() {
+      const element = document.body;
+      const opt = {
+        margin: 10,
+        filename: 'MAM-ON-Dashboard.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+      };
+      html2pdf().set(opt).from(element).save();
     }
 
-    // Initialize tracker on page load
-    document.addEventListener("DOMContentLoaded", updateTrackerStats);
+    // Print Function
+    function printReport() {
+      window.print();
+    }
+
+    // Attach event listeners
+    document.querySelector('.btn-pdf')?.addEventListener('click', exportPDF);
+    document.querySelector('.btn-print')?.addEventListener('click', printReport);
   </script>
 
 </body>
