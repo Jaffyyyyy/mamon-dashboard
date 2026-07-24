@@ -48,29 +48,48 @@
       padding: 35px 20px 65px 20px;
       text-align: center;
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
     }
 
     .header-logo-container {
-      margin-bottom: 12px;
       display: flex;
       justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
     }
 
-    .header-logo-svg {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      background: #FFFFFF;
-      padding: 2px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    .header-logo-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 8px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      object-fit: contain;
+      transition: all 0.3s ease;
+    }
+
+    .header-logo-img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .header-content {
+      flex: 1;
+      min-width: 250px;
     }
 
     .header h1 {
-      font-size: 26px;
+      font-size: 28px;
       font-weight: 900;
       letter-spacing: 0.2px;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
       word-wrap: break-word;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     .header .location-tag {
@@ -84,7 +103,7 @@
       font-size: 13px;
       color: #85BBEA;
       font-weight: 600;
-      margin-top: 6px;
+      margin-top: 8px;
       line-height: 1.3;
     }
 
@@ -634,12 +653,20 @@
 
     /* MOBILE & TABLET MEDIA QUERIES */
     @media (max-width: 768px) {
-      .header h1 {
-        font-size: 21px;
+      .header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 25px 20px 50px 20px;
       }
-      .header-logo-svg {
-        width: 90px;
-        height: 90px;
+      .header-content {
+        width: 100%;
+      }
+      .header h1 {
+        font-size: 22px;
+      }
+      .header-logo-img {
+        width: 100px;
+        height: 100px;
       }
       .container {
         padding: 0 10px;
@@ -659,6 +686,16 @@
     }
 
     @media (max-width: 480px) {
+      .header {
+        padding: 20px 15px 40px 15px;
+      }
+      .header h1 {
+        font-size: 18px;
+      }
+      .header-logo-img {
+        width: 80px;
+        height: 80px;
+      }
       .indicators-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 8px;
@@ -699,61 +736,12 @@
 </head>
 <body>
 
-  <!-- HEADER MATCHING MATCHED IMAGE -->
+  <!-- HEADER WITH NEW LOGO -->
   <div class="header">
     <div class="header-logo-container">
-      <svg class="header-logo-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <path id="top-text-path" d="M 40,250 A 210,210 0 1,1 460,250" />
-          <path id="bottom-text-path" d="M 40,250 A 210,210 0 0,0 460,250" />
-          <clipPath id="inner-circle-clip">
-            <circle cx="250" cy="250" r="180" />
-          </clipPath>
-        </defs>
-
-        <circle cx="250" cy="250" r="242" fill="#F472B6" stroke="#000000" stroke-width="8"/>
-        <circle cx="250" cy="250" r="180" fill="#FACC15" stroke="#000000" stroke-width="6"/>
-
-        <text font-family="'Arial Black', 'Helvetica', sans-serif" font-weight="900" font-size="27" fill="#000000">
-          <textPath href="#top-text-path" startOffset="50%" text-anchor="middle">MAM-ON ELEMENTARY SCHOOL</textPath>
-        </text>
-
-        <text font-family="'Arial Black', 'Arial', sans-serif" font-weight="800" font-size="17" fill="#000000">
-          <textPath href="#bottom-text-path" startOffset="50%" text-anchor="middle">• Km. 10, Tubo-tubo, Cagwait, Surigao del Sur •</textPath>
-        </text>
-
-        <g clip-path="url(#inner-circle-clip)">
-          <g fill="#FFFFFF" opacity="0.65">
-            <polygon points="250,260 60,110 80,90" />
-            <polygon points="250,260 100,70 125,55" />
-            <polygon points="250,260 150,40 180,30" />
-            <polygon points="250,260 210,25 240,22" />
-            <polygon points="250,260 270,22 300,25" />
-            <polygon points="250,260 330,30 360,40" />
-            <polygon points="250,260 385,55 410,70" />
-            <polygon points="250,260 430,90 450,110" />
-          </g>
-
-          <path d="M 60,320 Q 140,220 220,260 Q 320,200 440,300 L 440,440 L 60,440 Z" fill="#15803D" stroke="#000000" stroke-width="4"/>
-          <path d="M 242,205 L 258,205 L 254,390 L 246,390 Z" fill="#111827"/>
-          <path d="M 235,205 L 265,205 L 258,220 L 242,220 Z" fill="#111827"/>
-
-          <path d="M 250,95 C 220,135 225,180 240,200 C 247,185 250,170 250,170 C 250,170 253,185 260,200 C 275,180 280,135 250,95 Z" fill="#DC2626" stroke="#991B1B" stroke-width="3"/>
-          <path d="M 250,120 C 235,150 238,180 248,193 C 250,185 250,175 250,175 C 250,175 250,185 252,193 C 262,180 265,150 250,120 Z" fill="#F59E0B"/>
-
-          <path d="M 250,330 C 210,305 160,305 120,315 L 120,240 C 160,230 210,230 250,250 C 290,230 340,230 380,240 L 380,315 C 340,305 290,305 250,330 Z" fill="#FFFFFF" stroke="#000000" stroke-width="4"/>
-          <line x1="250" y1="250" x2="250" y2="330" stroke="#000000" stroke-width="4"/>
-          <path d="M 125,318 C 160,310 205,310 245,330" fill="none" stroke="#000000" stroke-width="2"/>
-          <path d="M 375,318 C 340,310 295,310 255,330" fill="none" stroke="#000000" stroke-width="2"/>
-
-          <text x="185" y="295" font-family="'Impact', 'Arial Black', sans-serif" font-size="44" font-weight="900" fill="#000000" text-anchor="middle">19</text>
-          <text x="315" y="295" font-family="'Impact', 'Arial Black', sans-serif" font-size="44" font-weight="900" fill="#000000" text-anchor="middle">98</text>
-
-          <text x="250" y="398" font-family="'Impact', 'Arial Black', sans-serif" font-size="48" font-weight="900" fill="#FFFFFF" stroke="#000000" stroke-width="5" paint-order="stroke fill" text-anchor="middle">MAMON</text>
-        </g>
-      </svg>
+      <img src="https://drive.google.com/uc?id=1Um1cbC30Hm8IP7gBvFDcASGfasfLtibR" alt="MAM-ON School Logo" class="header-logo-img">
     </div>
-    <div>
+    <div class="header-content">
       <h1>MAM-ON ELEMENTARY SCHOOL</h1>
       <p class="location-tag">Km. 10, Tubo-tubo, Cagwait, Surigao del Sur • School ID: 132649 • Est. 1998</p>
       <p class="subtitle">Comprehensive Performance Analytics & Institutional Diagnostic Report • SY 2026-2027</p>
