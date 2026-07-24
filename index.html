@@ -111,6 +111,39 @@
       line-height: 1.3;
     }
 
+    /* ===== OFFICIALS SECTION ===== */
+    .officials-section {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 16px 20px;
+      margin-top: 16px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .official-info {
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .official-name {
+      font-weight: 900;
+      font-size: 13px;
+      color: #FFFFFF;
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .official-title {
+      font-size: 11px;
+      color: #B4D4F1;
+      font-weight: 600;
+    }
+
     /* ===== CONTAINER ===== */
     .container {
       max-width: 1280px;
@@ -120,8 +153,9 @@
       z-index: 10;
     }
 
-    /* ===== PRINT & PDF TOOLBAR ===== */
+    /* ===== PRINT & PDF TOOLBAR - HIDDEN ===== */
     .smart-print-bar {
+      display: none !important;
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -129,7 +163,6 @@
       border-bottom: 2px solid #E2E8F0;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       padding: 10px 20px;
-      display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
@@ -146,14 +179,14 @@
     }
 
     .print-controls-group {
-      display: flex;
+      display: none;
       align-items: center;
       gap: 12px;
       flex-wrap: wrap;
     }
 
     .preset-group {
-      display: flex;
+      display: none;
       gap: 6px;
       flex-wrap: wrap;
     }
@@ -178,7 +211,7 @@
     }
 
     .print-checkboxes {
-      display: flex;
+      display: none;
       gap: 12px;
       align-items: center;
       font-size: 12px;
@@ -196,7 +229,7 @@
     }
 
     .action-btn-group {
-      display: flex;
+      display: none;
       gap: 8px;
     }
 
@@ -207,7 +240,7 @@
       font-weight: 700;
       font-size: 12px;
       cursor: pointer;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       gap: 6px;
@@ -609,6 +642,12 @@
         font-size: 22px;
       }
 
+      .officials-section {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 16px;
+      }
+
       .indicators-grid {
         grid-template-columns: 1fr;
       }
@@ -617,7 +656,7 @@
     /* ===== PRINT STYLES ===== */
     @media print {
       .smart-print-bar {
-        display: none;
+        display: none !important;
       }
 
       .header {
@@ -632,7 +671,7 @@
 </head>
 <body>
 
-  <!-- HEADER WITH LOGO -->
+  <!-- HEADER WITH LOGO AND OFFICIALS INFO -->
   <header class="header">
     <div class="header-logo-container">
       <img 
@@ -643,12 +682,24 @@
     </div>
     <div class="header-content">
       <h1>MAM-ON ELEMENTARY SCHOOL</h1>
-      <div class="location-tag">📍 Performance Analytics Dashboard</div>
-      <div class="subtitle">Student Achievement & Learning Progress Monitoring System</div>
+      <div class="location-tag">📍 Km. 10, Tubo-tubo, Cagwait, Surigao del Sur</div>
+      <div class="subtitle">Performance Analytics & Learning Progress Monitoring System</div>
+      
+      <!-- OFFICIALS SECTION -->
+      <div class="officials-section">
+        <div class="official-info">
+          <div class="official-name">ERIC P. PALINGCOD</div>
+          <div class="official-title">Principal</div>
+        </div>
+        <div class="official-info">
+          <div class="official-name">JASPER S. CAMPADO</div>
+          <div class="official-title">Administrative Officer II / Testing Coordinator & System Creator</div>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- PRINT TOOLBAR -->
+  <!-- PRINT TOOLBAR - HIDDEN -->
   <div class="smart-print-bar">
     <span class="print-bar-title">📊 Dashboard Controls</span>
     <div class="print-controls-group">
@@ -672,17 +723,15 @@
     <!-- Your content sections go here -->
     <section class="consolidation-report-card">
       <div class="consolidation-header">
-        <h2>School Performance Summary</h2>
+        <h2>School Performance Dashboard</h2>
         <span class="consolidation-tag">Overview</span>
       </div>
-      <div class="indicators-grid">
-        <!-- KPI cards will be populated here -->
-      </div>
+      <p style="color: #64748B; font-size: 13px; margin-bottom: 16px;">Welcome to MAM-ON Elementary School's Performance Analytics Dashboard. This system provides comprehensive insights into student achievement and learning progress across all grades and subjects.</p>
     </section>
   </div>
 
   <script>
-    // PDF Export Function
+    // PDF Export Function (Hidden but functional if needed)
     function exportPDF() {
       const element = document.body;
       const opt = {
@@ -695,12 +744,12 @@
       html2pdf().set(opt).from(element).save();
     }
 
-    // Print Function
+    // Print Function (Hidden but functional if needed)
     function printReport() {
       window.print();
     }
 
-    // Attach event listeners
+    // Attach event listeners (if buttons are shown)
     document.querySelector('.btn-pdf')?.addEventListener('click', exportPDF);
     document.querySelector('.btn-print')?.addEventListener('click', printReport);
   </script>
